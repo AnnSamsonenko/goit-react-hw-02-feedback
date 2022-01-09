@@ -7,6 +7,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(145deg, #d4d4d8, #fbfdff);
+  height: 100%;
+}
+html {
+  height: 100%;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -16,10 +21,7 @@ code {
   margin: 0;
   padding: 0;
 }
-body,
-html {
-  height: 100%;
-}
+
 img,
 picture,
 svg {
