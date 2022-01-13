@@ -3,7 +3,7 @@ import { font } from "../../helpers/mixins";
 
 export const List = styled.ul`
   padding: ${(props) => props.theme.spacing(6)};
-  max-width: ${(props) => props.theme.spacing(63)};
+  max-width: ${(props) => props.theme.spacing(72)};
   border-radius: ${(props) => props.theme.spacing(4)};
   ${font({ fs: 16, fw: 600, lh: 20 })};
   background-color: ${(props) => props.theme.colors.buttonBg};

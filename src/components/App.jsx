@@ -1,6 +1,6 @@
 import { GlobalStyle } from "../constants/GlobalStyle";
 import { Component } from "react";
-import propTypes from "prop-types";
+
 import { Section } from "./Section/Section";
 import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
 import { Statistics } from "./Statistics/Statistics";
@@ -8,14 +8,13 @@ import { Notification } from "./Notification/Notification";
 
 export class App extends Component {
   static defaultProps = {
-    step: 1,
     state: { good: 0, neutral: 0, bad: 0 },
   };
 
   state = this.props.state;
 
   onLeaveFeedback = (e) => {
-    const key = e.target.textContent;
+    const key = e.target.name;
     this.setState((prevState) => {
       return { [key]: (prevState[key] += 1) };
     });
@@ -25,15 +24,15 @@ export class App extends Component {
     return Object.values(this.state).reduce((acc, state) => acc + state, 0);
   };
 
-  countPositiveFeedbackPercentage = () => {
-    return Math.floor((this.state.good * 100) / this.countTotalFeedback());
+  countFeedbackPercentage = (feedbackCount) => {
+    return Math.floor((feedbackCount * 100) / this.countTotalFeedback());
   };
 
   render() {
     const { good, bad, neutral } = this.state;
     const options = Object.keys(this.state);
     const totalStats = this.countTotalFeedback();
-    const positiveStats = this.countPositiveFeedbackPercentage();
+    const positiveStats = this.countFeedbackPercentage(good);
     return (
       <>
         <GlobalStyle />
@@ -60,15 +59,3 @@ export class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  title: propTypes.string,
-  options: propTypes.arrayOf(propTypes.string),
-  onLeaveFeedback: propTypes.elementType,
-  good: propTypes.number,
-  bad: propTypes.number,
-  neutral: propTypes.number,
-  total: propTypes.number,
-  positivePercentage: propTypes.number,
-  message: propTypes.string,
-};
